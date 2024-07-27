@@ -1,4 +1,4 @@
-# iChat Web Application
+# Ded / Ded Web Application
 
 Ded /Ded is a real-time web chat application built with Flask and Socket.IO. It provides a seamless and interactive platform for users to communicate with each other through individual chat rooms.
 
