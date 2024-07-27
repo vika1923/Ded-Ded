@@ -1,6 +1,6 @@
 # iChat Web Application
 
-iChat is a real-time web chat application built with Flask and Socket.IO. It provides a seamless and interactive platform for users to communicate with each other through individual chat rooms.
+Ded /Ded is a real-time web chat application built with Flask and Socket.IO. It provides a seamless and interactive platform for users to communicate with each other through individual chat rooms.
 
 ## Project Structure
 
@@ -31,12 +31,12 @@ Chat_Web_App/
 
 ## Getting Started
 
-To run the iChat web application locally, follow these steps:
+To run the Ded / Ded web application locally, follow these steps:
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/Chat_Web_App.git
+   https://github.com/vika1923/Ded-Ded.git
    ```
 
 2. Install the required dependencies:
@@ -66,7 +66,7 @@ To run the iChat web application locally, follow these steps:
    ```
 
 
-Visit `http://localhost:5000` in your web browser to access iChat.
+Visit `http://localhost:5000` in your web browser to access Ded / Ded.
 
 ## Features
 
@@ -105,17 +105,6 @@ Entry point for running the server. Initializes the Flask application and Socket
 ## ⛏️ Built With <a name = "tech_stack"></a>
 
 <img alt="Flask" src="https://img.shields.io/badge/flask-%23000.svg?&style=for-the-badge&logo=flask&logoColor=white"/><img alt="HTML5" src="https://img.shields.io/badge/html5-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/><img alt="CSS3" src="https://img.shields.io/badge/css3-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/><img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/><img alt="Bootstrap" src="https://img.shields.io/badge/bootstrap-%23563D7C.svg?&style=for-the-badge&logo=bootstrap&logoColor=white"/><img alt="FlaskSqlalchemy" src ="https://img.shields.io/badge/FlaskSQLalchemy-%2307405e.svg?&style=for-the-badge&logo=sqlite&logoColor=white"/>
-
-## 🤳 Screenshots <a name = "screenshots"></a>
-|                                                                                                                                   |                                                                                                                                   |                                                                                                                                              |
-|:---------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
-|  <img width="1604" src="https://github.com/Adebowale-Morakinyo/Chat_Web_App/blob/main/Screenshot/register_login.png">  Register   |      <img width="1604" src="https://github.com/Adebowale-Morakinyo/Chat_Web_App/blob/main/Screenshot/login_page.png" > Login      | <img width="1604" src="https://github.com/Adebowale-Morakinyo/Chat_Web_App/blob/main/Screenshot/new_chat.png"> Add other users (Chat Window) |
-| <img width="1604" src="https://github.com/Adebowale-Morakinyo/Chat_Web_App/blob/main/Screenshot/chatting_1.png"> (Chat Window _A) | <img width="1604" src="https://github.com/Adebowale-Morakinyo/Chat_Web_App/blob/main/Screenshot/chatting_2.png"> (Chat Window _B) |      <img width="1604" src="https://github.com/Adebowale-Morakinyo/Chat_Web_App/blob/main/Screenshot/chatting_3.png"> (Chat Window _C)       |
-| <img width="1604" src="https://github.com/Adebowale-Morakinyo/Chat_Web_App/blob/main/Screenshot/chatting_4.png"> (Chat Window _D) |
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute to iChat, please follow the [contribution guidelines](CONTRIBUTING.md).
 
 ## License
 
