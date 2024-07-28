@@ -16,12 +16,9 @@ API_KEY = "AIzaSyANuEoP_UF5loxA4NdAbcH7rdU72OAJsL0"
 
 genai.configure(api_key=API_KEY)
 
-generation_config = {
-  "temperature": 0.9,
-  "top_p": 1,
-  "max_output_tokens": 8192,
-  "response_mime_type": "text/plain",
-}
+model = genai.GenerativeModel('gemini-1.5-flash')
+
+
 
 model = genai.GenerativeModel(
   model_name="tunedModels/copy-of-starik-by4w6h06yice",
@@ -41,12 +38,14 @@ def login_required(f):
     return decorated
 
 
+
 @views.route("/api/gemini", methods=["POST"])
 @login_required  # Ensure the user is logged in
 def call_gemini():
     user_query = request.json.get("query")
     response = model.generate_content(user_query)
     return jsonify({"response": response.text})
+
 
 
 # Index route, this route redirects to login/register page
