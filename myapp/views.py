@@ -12,9 +12,21 @@ views = Blueprint('views', __name__, static_folder='static', template_folder='te
 
 
 # Configure the API key
-API_KEY = "AIzaSyCyq7H5t6YeBiTAgSBfODe4mSvV9ucW1Rs"
+API_KEY = "AIzaSyANuEoP_UF5loxA4NdAbcH7rdU72OAJsL0"
+
 genai.configure(api_key=API_KEY)
-model = genai.GenerativeModel('gemini-1.5-flash')
+
+generation_config = {
+  "temperature": 0.9,
+  "top_p": 1,
+  "max_output_tokens": 8192,
+  "response_mime_type": "text/plain",
+}
+
+model = genai.GenerativeModel(
+  model_name="tunedModels/copy-of-starik-by4w6h06yice",
+  generation_config=generation_config,
+)
 
 
 

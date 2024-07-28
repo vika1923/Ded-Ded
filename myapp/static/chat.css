@@ -161,7 +161,7 @@ img {
 }
 
 .inbox_chat {
-  height: 625px;
+  height: 570px;
   overflow-y: scroll;
 }
 
@@ -266,4 +266,31 @@ img {
 .msg_history {
   height: 600px;
   overflow-y: auto;
+}
+
+
+.app_bar {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f1f1f1;
+  padding: 5px;
+  border-top: 1px solid #ccc;
+}
+
+.app_bar_button {
+  background-color: #EFEFEF; 
+  border: none;
+  color: #464646;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.app_bar_button:hover {
+  background-color: #05728f;
 }
