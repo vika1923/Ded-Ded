@@ -2,22 +2,47 @@ from myapp import create_app
 from myapp.database import db, Message, ChatMessage
 from flask_socketio import emit, join_room, leave_room
 
+from flask import request, session
+from myapp.database import User
+
+
 app, socket = create_app()
 
 
 # COMMUNICATION ARCHITECTURE
 
 # Join-chat event. Emit online message to other users and join the room
+# @socket.on("join-chat")
+# def join_private_chat(data):
+#     print()
+#     room = data["rid"]
+#     join_room(room=room)
+#     socket.emit(
+#         "joined-chat",
+#         {"msg": f"{room} is now online."},
+#         room=room,
+#         # include_self=False,
+#     )
+
 @socket.on("join-chat")
 def join_private_chat(data):
     room = data["rid"]
-    join_room(room=room)
-    socket.emit(
-        "joined-chat",
-        {"msg": f"{room} is now online."},
-        room=room,
-        # include_self=False,
-    )
+    current_user_email = session["user"]
+    random_email = User.get_random_emails(exclude_email=current_user_email, num_emails=1)
+
+    if random_email:
+        join_room(room=room)
+        socket.emit(
+            "joined-chat",
+            {"msg": f"{room} is now online and connected with {random_email[0]}."},
+            room=room,
+        )
+    else:
+        socket.emit(
+            "error",
+            {"msg": "No other users available to connect."},
+            room=room,
+        )
 
 
 # Outgoing event handler
