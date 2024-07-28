@@ -6,7 +6,16 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from myapp import socket
 
+import google.generativeai as genai
+
 views = Blueprint('views', __name__, static_folder='static', template_folder='templates')
+
+
+# Configure the API key
+API_KEY = "AIzaSyANuEoP_UF5loxA4NdAbcH7rdU72OAJsL0"
+genai.configure(api_key=API_KEY)
+model = genai.GenerativeModel('gemini-1.5-flash')
+
 
 
 # Login decorator to ensure user is logged in before accessing certain routes
@@ -18,6 +27,14 @@ def login_required(f):
         return f(*args, **kwargs)
 
     return decorated
+
+
+@views.route("/api/gemini", methods=["POST"])
+@login_required  # Ensure the user is logged in
+def call_gemini():
+    user_query = request.json.get("query")
+    response = model.generate_content(user_query)
+    return jsonify({"response": response.text})
 
 
 # Index route, this route redirects to login/register page
