@@ -12,7 +12,7 @@ views = Blueprint('views', __name__, static_folder='static', template_folder='te
 
 
 # Configure the API key
-API_KEY = "AIzaSyANuEoP_UF5loxA4NdAbcH7rdU72OAJsL0"
+API_KEY = "AIzaSyCyq7H5t6YeBiTAgSBfODe4mSvV9ucW1Rs"
 genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
