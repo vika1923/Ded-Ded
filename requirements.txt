@@ -7,4 +7,4 @@ flask_login
 pandas
 matplotlib
 passlib
-google-generativeai==0.16.0
+

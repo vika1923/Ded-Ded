@@ -256,6 +256,60 @@ def ftime(date):
     return formatted_time
 
 
+
+@views.route("/connect-random", methods=["POST"])
+@login_required
+def connect_random():
+    user_id = session["user"]["id"]
+    current_user_email = session["user"]["email"]
+    
+    random_emails = User.get_random_emails(exclude_email=current_user_email, num_emails=1)
+    
+    if not random_emails:
+        return jsonify({"message": "No other users available to connect."}), 400
+
+    random_email = random_emails[0]
+    recipient_user = User.query.filter_by(email=random_email).first()
+    
+    if not recipient_user:
+        return jsonify({"message": "Recipient user not found."}), 400
+    
+    existing_chat = Chat.query.filter_by(user_id=user_id).first()
+    if not existing_chat:
+        existing_chat = Chat(user_id=user_id, chat_list=[])
+        db.session.add(existing_chat)
+        db.session.commit()
+
+    if recipient_user.id not in [user_chat["user_id"] for user_chat in existing_chat.chat_list]:
+        room_id = str(int(recipient_user.id) + int(user_id))[-4:]
+
+        updated_chat_list = existing_chat.chat_list + [{"user_id": recipient_user.id, "room_id": room_id}]
+        existing_chat.chat_list = updated_chat_list
+        existing_chat.save_to_db()
+
+        recipient_chat = Chat.query.filter_by(user_id=recipient_user.id).first()
+        if not recipient_chat:
+            recipient_chat = Chat(user_id=recipient_user.id, chat_list=[])
+            db.session.add(recipient_chat)
+            db.session.commit()
+
+        updated_chat_list = recipient_chat.chat_list + [{"user_id": user_id, "room_id": room_id}]
+        recipient_chat.chat_list = updated_chat_list
+        recipient_chat.save_to_db()
+
+        new_message = Message(room_id=room_id)
+        db.session.add(new_message)
+        db.session.commit()
+
+        return jsonify({"redirect": url_for("views.chat", rid=room_id)})
+
+    return jsonify({"message": "You are already chatting with this user."}), 400
+
+
+
+
+
+
 @views.route('/visualize')
 def visualize():
     """

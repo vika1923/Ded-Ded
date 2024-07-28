@@ -62,6 +62,38 @@
       $('#aiChatModal').modal('show');
     }
   </script>
+  
+  
+  <!-- Java Script code for random email generation --><script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("connect-random-form");
+
+      form.addEventListener("submit", function(event) {
+          event.preventDefault();  // Prevent the default form submission
+
+          fetch(form.action, {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/x-www-form-urlencoded"
+              },
+              body: new URLSearchParams(new FormData(form)).toString()
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.redirect) {
+                  window.location.href = data.redirect;
+              } else {
+                  alert("Error: " + data.message);
+              }
+          })
+          .catch(error => {
+              console.error("Error:", error);
+          });
+      });
+  });
+</script>
+
+
 </head>
 
 <body>
@@ -119,8 +151,12 @@
             {% endfor %}
           </div>
           <div class="app_bar">
-                          <!-- Placeholder for current user's email -->
-                          <button class="app_bar_button" onclick="fetchRandomEmail()">Get Random Email</button>
+                          
+                         <!-- chat.html -->
+<form id="connect-random-form" action="{{ url_for('views.connect_random') }}" method="post">
+  <button class="app_bar_button" type="submit" >Connect to Random User</button>
+</form>
+
                           <p id="random-email"></p>
                           <button class="app_bar_button" onclick="startAIchat()">AI chat</button>
           </div>
