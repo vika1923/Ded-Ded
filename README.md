@@ -40,7 +40,9 @@ To run the Ded / Ded web application locally, follow these steps:
    ```
 
 2. Install the required dependencies:
-
+    ```bash
+    pip install -q -U google-generativeai
+    ```
    ```bash
    pip install -r requirements.txt
    ```
