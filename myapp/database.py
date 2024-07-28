@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from passlib.hash import pbkdf2_sha256
+import random
+
 
 
 db = SQLAlchemy()
@@ -18,6 +20,13 @@ class User(db.Model):
 
     def check_password(self, password):
         return pbkdf2_sha256.verify(password, self.password)
+    
+    @staticmethod
+    def get_random_emails(exclude_email, num_emails=1):
+        all_emails = User.query.with_entities(User.email).filter(User.email != exclude_email).all()
+        email_list = [email[0] for email in all_emails]
+        random_emails = random.sample(email_list, min(num_emails, len(email_list)))
+        return random_emails
 
 
 class Chat(db.Model):
@@ -54,3 +63,4 @@ class ChatMessage(db.Model):
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
+
