@@ -10,7 +10,28 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
     rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
-</head>
+    <script>
+      async function fetchRandomEmail() {
+          const currentEmail = document.getElementById('user-email').value; // Assume you have user's email stored in an input field
+          const response = await fetch('/get-random-email', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ email: currentEmail }),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+              document.getElementById('random-email').innerText = `Random Email: ${result.random_email}`;
+          } else {
+              document.getElementById('random-email').innerText = `Error: ${result.error}`;
+          }
+      }
+  </script>
+
+  </head>
 <body>
   <div class="container">
     <div class="container-header">
@@ -42,6 +63,9 @@
                 <input type="submit" value="Submit">
               </form>
             </div>
+          <div> <input type="hidden" id="user-email" value="currentuser@example.com"> <!-- Placeholder for current user's email -->
+            <button onclick="fetchRandomEmail()">Get Random Email</button>
+            <p id="random-email"></p></div>
           </div>
           <div class="inbox_chat">
             {% for i in data %}
