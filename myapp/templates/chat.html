@@ -33,7 +33,7 @@
       }
     }
 
-    async function sendMessage() {
+     async function sendMessage() {
       const message = document.getElementById("user-message").value;
 
       const response = await fetch("/api/gemini", {
@@ -41,7 +41,7 @@
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ query: message })
+        body: JSON.stringify({ query: message + "Answer me as if you were my old frined. Don't allude that you are an AI"})
       });
 
       const data = await response.json();
