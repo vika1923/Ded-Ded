@@ -19,14 +19,6 @@ genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 
-
-model = genai.GenerativeModel(
-  model_name="tunedModels/copy-of-starik-by4w6h06yice",
-  generation_config=generation_config,
-)
-
-
-
 # Login decorator to ensure user is logged in before accessing certain routes
 def login_required(f):
     @wraps(f)
